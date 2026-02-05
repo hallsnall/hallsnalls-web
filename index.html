@@ -1,36 +1,298 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head><meta name="google-site-verification" content="3Ltv5CnhBCWtp18C7iizD1TtT2v9CuUb7xcx4xqB6nc" />
+<head>
   <meta charset="UTF-8" />
-  <title>Halls’n’All</title>
+
+  <!-- Google Search Console verification (keep your real value here) -->
+  <meta name="google-site-verification" content="PASTE_YOUR_REAL_TOKEN_HERE" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Halls’n’All — Find Event Halls & Venues Across the U.S.</title>
+  <meta name="description" content="Halls’n’All helps you discover and compare event halls, banquet venues, and party spaces across the U.S. Join early access as we launch city by city." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Halls’n’All — Find Event Halls & Venues Across the U.S." />
+  <meta property="og:description" content="Discover and compare event halls, banquet venues, and party spaces. Join early access." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hallsnalls.com/" />
+
+  <!-- Basic styling -->
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a30;
+      --muted:#a8b3cf;
+      --text:#ffffff;
+      --line:rgba(255,255,255,.10);
+      --accent:#f5c542; /* gold */
+      --accent2:#5ad1ff; /* light blue */
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(90,209,255,.15), transparent 60%),
+        radial-gradient(800px 500px at 90% 20%, rgba(245,197,66,.13), transparent 55%),
+        var(--bg);
+      color:var(--text);
     }
-    p {
-      opacity: 0.85;
-      font-size: 1.1rem;
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 54px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:10px 0 26px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(245,197,66,.12);
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--line); border-radius:999px; padding:8px 12px;
+      background:rgba(255,255,255,.04);
+      font-size:13px; color:var(--muted);
+    }
+    .hero{
+      display:grid; grid-template-columns: 1.25fr .75fr; gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--line);
+      background:rgba(15,26,48,.72);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:26px;
+    }
+    h1{
+      margin:10px 0 10px;
+      font-size: 44px;
+      line-height: 1.07;
+      letter-spacing: -0.6px;
+    }
+    @media (max-width: 520px){ h1{font-size:34px} }
+    .sub{
+      color:var(--muted);
+      font-size: 16.5px;
+      line-height: 1.55;
+      margin: 0 0 18px;
+    }
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(245,197,66,.95), rgba(90,209,255,.65));
+      border-color: rgba(255,255,255,.18);
+      color:#0b1220;
+    }
+    .btnSmall{padding:10px 12px; font-weight:700}
+    .grid2{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px;
+    }
+    @media (max-width: 700px){ .grid2{grid-template-columns:1fr} }
+    .mini{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding:14px;
+      background: rgba(255,255,255,.04);
+    }
+    .mini h3{margin:0 0 6px; font-size:16px}
+    .mini p{margin:0; color:var(--muted); font-size:14px; line-height:1.5}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:14px; line-height:1.6}
+    .section{margin-top:18px}
+    .kpis{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:14px;
+    }
+    @media (max-width: 900px){ .kpis{grid-template-columns:1fr} }
+    .kpi{padding:14px; border:1px solid var(--line); border-radius: 14px; background:rgba(255,255,255,.04)}
+    .kpi b{display:block; font-size:16px; margin-bottom:4px}
+    .kpi span{color:var(--muted); font-size:13.5px; line-height:1.45}
+    .form{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;
+    }
+    input{
+      flex:1 1 240px;
+      padding:12px 12px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.20);
+      color: var(--text);
+      outline:none;
+    }
+    input::placeholder{color: rgba(168,179,207,.8)}
+    .fine{color:var(--muted); font-size:12.5px; line-height:1.5; margin-top:10px}
+    .footer{
+      margin-top:22px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .seo{
+      max-width: 720px;
     }
   </style>
+
+  <!-- Minimal structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Halls’n’All",
+    "url":"https://hallsnalls.com/",
+    "description":"A marketplace to discover and compare event halls and venues across the United States."
+  }
+  </script>
 </head>
+
 <body>
-  <div>
-    <h1>Halls’n’All</h1>
-    <p>Your one-stop events marketplace</p>
-    <p>Coming soon.</p>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Halls’n’All</span>
+      </div>
+      <div class="pill">Launching city by city • Early access open</div>
+    </div>
+
+    <div class="hero">
+      <div class="card">
+        <div class="pill">Event halls • Banquet venues • Party spaces</div>
+        <h1>Find the perfect event hall — anywhere in the U.S.</h1>
+        <p class="sub">
+          Halls’n’All helps you discover and compare verified venues for weddings, birthdays,
+          corporate events, cultural celebrations, and more. We’re building the simplest way to match hosts with the right space.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn btnPrimary" href="#early-access">Join Early Access</a>
+          <a class="btn" href="#venues">List Your Venue</a>
+          <a class="btn btnSmall" href="#how-it-works">How it works</a>
+        </div>
+
+        <div class="section kpis">
+          <div class="kpi">
+            <b>For hosts</b>
+            <span>Search by location, capacity, event type, and key amenities.</span>
+          </div>
+          <div class="kpi">
+            <b>For venues</b>
+            <span>Get discovered and receive qualified inquiries from real customers.</span>
+          </div>
+          <div class="kpi">
+            <b>Built for scale</b>
+            <span>Launching with clean listings, verified details, and anti-spam controls.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="early-access">
+        <h2 style="margin:0 0 8px; font-size:20px;">Get early access</h2>
+        <p class="sub" style="margin:0 0 10px;">
+          Be first to know when we launch in your city. (No spam.)
+        </p>
+
+        <!-- Option A (works immediately): opens email client -->
+        <form class="form" method="GET" action="mailto:info@hallsnalls.com">
+          <input name="subject" type="hidden" value="Halls’n’All Early Access" />
+          <input name="body" type="hidden" value="Hi Halls’n’All team,%0D%0A%0D%0AI'd like early access. My details:%0D%0AEmail:%0D%0ACity/State:%0D%0AI'm a (Host/Venue):%0D%0A%0D%0AThanks!" />
+          <input type="email" placeholder="Your email (for your reference)" disabled />
+          <button class="btn btnPrimary" type="submit">Email Us to Join</button>
+        </form>
+
+        <p class="fine">
+          Want a real form (no email app)? Use Formspree later and I’ll wire it in properly.
+          For now, this gets you collecting interest immediately.
+        </p>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Hosts</h3>
+            <p>Tell us your city and event type so we prioritize your area.</p>
+            <ul class="list">
+              <li>Weddings</li>
+              <li>Birthdays</li>
+              <li>Corporate events</li>
+              <li>Cultural celebrations</li>
+            </ul>
+          </div>
+          <div class="mini" id="venues">
+            <h3>Venue owners</h3>
+            <p>Get early onboarding and featured placement opportunities.</p>
+            <ul class="list">
+              <li>Verified listing</li>
+              <li>Lead requests</li>
+              <li>Availability & pricing signals</li>
+              <li>Promoted placement (later)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section" id="how-it-works" style="margin-top:18px;">
+      <h2 style="margin:0 0 10px; font-size:20px;">How Halls’n’All works</h2>
+      <div class="grid2">
+        <div class="mini">
+          <h3>1) Discover</h3>
+          <p>Browse venues by state, city, capacity, and event type.</p>
+        </div>
+        <div class="mini">
+          <h3>2) Compare</h3>
+          <p>See key details clearly: amenities, policies, photos, and contact options.</p>
+        </div>
+        <div class="mini">
+          <h3>3) Connect</h3>
+          <p>Send an inquiry or request a quote. Vendors receive qualified leads.</p>
+        </div>
+        <div class="mini">
+          <h3>4) Book smarter</h3>
+          <p>Our goal: reduce back-and-forth and help you book confidently.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="seo">
+        <b style="color:#fff">SEO keywords (for Google clarity):</b><br/>
+        Event halls in the United States • banquet venues • party halls • wedding venues • corporate event spaces •
+        venue directory • halls for rent • event space marketplace
+      </div>
+      <div>
+        <b style="color:#fff">Contact</b><br/>
+        info@hallsnalls.com
+      </div>
+      <div>
+        <b style="color:#fff">©</b> <span id="y"></span> Halls’n’All
+      </div>
+    </div>
   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
