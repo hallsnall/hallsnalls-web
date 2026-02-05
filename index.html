@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Google Search Console verification (keep your real value here) -->
+  <!-- Google Search Console verification (replace with your REAL token) -->
   <meta name="google-site-verification" content="PASTE_YOUR_REAL_TOKEN_HERE" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -151,9 +151,7 @@
       gap:14px;
       flex-wrap:wrap;
     }
-    .seo{
-      max-width: 720px;
-    }
+    .seo{max-width: 720px;}
   </style>
 
   <!-- Minimal structured data -->
@@ -215,17 +213,23 @@
           Be first to know when we launch in your city. (No spam.)
         </p>
 
-        <!-- Option A (works immediately): opens email client -->
-        <form class="form" method="GET" action="mailto:info@hallsnalls.com">
-          <input name="subject" type="hidden" value="Halls’n’All Early Access" />
-          <input name="body" type="hidden" value="Hi Halls’n’All team,%0D%0A%0D%0AI'd like early access. My details:%0D%0AEmail:%0D%0ACity/State:%0D%0AI'm a (Host/Venue):%0D%0A%0D%0AThanks!" />
-          <input type="email" placeholder="Your email (for your reference)" disabled />
-          <button class="btn btnPrimary" type="submit">Email Us to Join</button>
+        <!-- REAL FORM (Formspree) -->
+        <form class="form" method="POST" action="https://formspree.io/f/maqdwnbo">
+          <!-- light anti-spam (honeypot) -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="source" value="hallsnalls.com landing" />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email"
+            required
+          />
+          <button class="btn btnPrimary" type="submit">Join Early Access</button>
         </form>
 
         <p class="fine">
-          Want a real form (no email app)? Use Formspree later and I’ll wire it in properly.
-          For now, this gets you collecting interest immediately.
+          Prefer email? Contact us at <a href="mailto:info@hallsnalls.com">info@hallsnalls.com</a>.
         </p>
 
         <div class="grid2" style="margin-top:14px;">
@@ -290,21 +294,9 @@
       </div>
     </div>
   </div>
-<form class="form" method="POST" action="https://formspree.io/f/maqdwnbo">
-  <input
-    type="email"
-    name="email"
-    placeholder="Your email"
-    required
-  />
-  <button type="submit">Join Early Access</button>
-</form>
+
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
-  </script>  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
   </script>
-</body>
-</html>
 </body>
 </html>
